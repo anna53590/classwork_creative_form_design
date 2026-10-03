@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragon Shelter Application</title>
+
+    <style>
+        body {
+            font-family: Georgia, serif;
+            background-color: #1c1824;
+            color: #f8f0df;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #2c2438;
+            padding: 35px;
+            border: 3px solid #d6a84b;
+            border-radius: 18px;
+            box-shadow: 0 0 25px #000000;
+        }
+
+        h1 {
+            text-align: center;
+            color: #f5bf4f;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #c9b9dd;
+            margin-bottom: 30px;
+        }
+
+        fieldset {
+            border: 2px solid #76588f;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            background-color: #352b43;
+        }
+
+        legend {
+            color: #ffcb63;
+            font-weight: bold;
+            font-size: 18px;
+            padding: 0 10px;
+        }
+
+        label {
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        input[type="datetime-local"],
+        input[type="number"],
+        input[type="file"],
+        select,
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px;
+            margin-top: 6px;
+            margin-bottom: 12px;
+            border: 1px solid #9c83af;
+            border-radius: 7px;
+            background-color: #f8f0df;
+            color: #21182b;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        input[type="range"] {
+            width: 70%;
+        }
+
+        input[type="color"] {
+            width: 70px;
+            height: 40px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .choice {
+            margin: 6px 0;
+        }
+
+        .choice label {
+            margin-top: 0;
+        }
+
+        .warning {
+            background-color: #4b2633;
+            border-left: 5px solid #e86452;
+            padding: 12px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .outside-field {
+            max-width: 800px;
+            box-sizing: border-box;
+            margin: 20px auto;
+            background-color: #352b43;
+            padding: 20px;
+            border: 2px dashed #d6a84b;
+            border-radius: 12px;
+            color: #f8f0df;
+        }
+
+        .outside-field input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px;
+            margin-top: 8px;
+        }
+
+        .buttons {
+            text-align: center;
+        }
+
+        button {
+            padding: 12px 18px;
+            margin: 7px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .get-button {
+            background-color: #d7a94d;
+            color: #261c2f;
+        }
+
+        .post-button {
+            background-color: #7952a1;
+            color: white;
+        }
+
+        .emergency-button {
+            background-color: #b94338;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.85;
+        }
+
+        .seal {
+            text-align: center;
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="seal">🐉</div>
+
+    <h1>Ministry of Dragon Relocation & Adoption</h1>
+
+    <p class="subtitle">
+        Official Form DR-AGON-42<br>
+        Please complete all relevant sections before approaching the dragon.
+    </p>
+
+    <!--
+        The form uses GET by default.
+        The second submit button overrides this with POST.
+    -->
+    <form
+        id="dragonForm"
+        action="/dragon_registry.php"
+        method="get"
+    >
+
+        <fieldset>
+            <legend>1. Applicant Information</legend>
+
+            <!-- TEXT -->
+            <label for="name">Your full name:</label>
+            <input
+                type="text"
+                id="name"
+                name="applicant_name"
+                placeholder="Sir Flammable McKnight"
+                required
+            >
+
+            <!-- EMAIL -->
+            <label for="email">Your emergency email:</label>
+            <input
+                type="email"
+                id="email"
+                name="applicant_email"
+                placeholder="knight@dragonmail.example"
+                required
+            >
+
+            <!-- NUMBER -->
+            <label for="experience">
+                Years of dragon-related experience:
+            </label>
+            <input
+                type="number"
+                id="experience"
+                name="experience_years"
+                min="0"
+                max="500"
+                value="0"
+            >
+        </fieldset>
+
+
+        <fieldset>
+            <legend>2. Application Type</legend>
+
+            <!-- RADIO -->
+            <div class="choice">
+                <input
+                    type="radio"
+                    id="app1"
+                    name="application_type"
+                    value="bring"
+                >
+                <label for="app1">
+                    Bring a dragon to the shelter
+                </label>
+            </div>
+
+            <div class="choice">
+                <input
+                    type="radio"
+                    id="app2"
+                    name="application_type"
+                    value="adopt"
+                >
+                <label for="app2">
+                    Adopt a dragon from the shelter
+                </label>
+            </div>
+
+            <div class="choice">
+                <input
+                    type="radio"
+                    id="app3"
+                    name="application_type"
+                    value="temporary"
+                >
+                <label for="app3">
+                    Temporarily borrow a dragon for heroic purposes
+                </label>
+            </div>
+        </fieldset>
+
+
+        <fieldset>
+            <legend>3. Dragon Classification</legend>
+
+            <p>Select all types that apply:</p>
+
+            <!-- CHECKBOX -->
+            <div class="choice">
+                <input
+                    type="checkbox"
+                    id="fire"
+                    name="dragon_fire"
+                    value="Fire"
+                >
+                <label for="fire">🔥 Fire dragon</label>
+            </div>
+
+            <div class="choice">
+                <input
+                    type="checkbox"
+                    id="water"
+                    name="dragon_water"
+                    value="Water"
+                >
+                <label for="water">🌊 Water dragon</label>
+            </div>
+
+            <div class="choice">
+                <input
+                    type="checkbox"
+                    id="frost"
+                    name="dragon_frost"
+                    value="Frost"
+                >
+                <label for="frost">❄️ Frost dragon</label>
+            </div>
+
+            <div class="choice">
+                <input
+                    type="checkbox"
+                    id="electric"
+                    name="dragon_electric"
+                    value="Electric"
+                >
+                <label for="electric">⚡ Electric dragon</label>
+            </div>
+
+            <div class="choice">
+                <input
+                    type="checkbox"
+                    id="unknown"
+                    name="dragon_unknown"
+                    value="Unknown"
+                >
+                <label for="unknown">
+                    ❓ Unknown / possibly pretending to be a large lizard
+                </label>
+            </div>
+
+            <br>
+
+            <!-- SELECT -->
+            <label for="size">Dragon size category:</label>
+            <select id="size" name="dragon_size">
+                <option value="pocket">Pocket-sized</option>
+                <option value="dog">Approximately dog-sized</option>
+                <option value="horse">Horse-sized</option>
+                <option value="house">House-sized</option>
+                <option value="castle">Castle-sized</option>
+                <option value="mountain">Please alert the government</option>
+            </select>
+
+            <!-- COLOR -->
+            <label for="dragonColor">Approximate dragon colour:</label>
+            <input
+                type="color"
+                id="dragonColor"
+                name="dragon_color"
+                value="#7b3fa0"
+            >
+        </fieldset>
+
+
+        <fieldset>
+            <legend>4. Danger Assessment</legend>
+
+            <!-- RANGE -->
+            <label for="danger">
+                How dangerous is the dragon?
+            </label>
+
+            <br>
+
+            <span>Friendly</span>
+
+            <input
+                type="range"
+                id="danger"
+                name="danger_level"
+                min="1"
+                max="10"
+                value="5"
+                oninput="dangerValue.value = this.value"
+            >
+
+            <span>Apocalyptic</span>
+
+            <p>
+                Current danger rating:
+                <output
+                    id="dangerValue"
+                    name="danger_display"
+                    for="danger"
+                >5</output>/10
+            </p>
+
+            <!-- TEXTAREA -->
+            <label for="behaviour">
+                Describe the dragon's personality and suspicious habits:
+            </label>
+
+            <textarea
+                id="behaviour"
+                name="dragon_behaviour"
+                rows="5"
+                placeholder="Example: Steals sandwiches, dislikes knights, sleeps on gold..."
+            ></textarea>
+        </fieldset>
+
+
+        <fieldset>
+            <legend>5. Dates & Appointments</legend>
+
+            <!-- DATE -->
+            <label for="birthdate">
+                Dragon's estimated hatching date:
+            </label>
+
+            <input
+                type="date"
+                id="birthdate"
+                name="dragon_hatching_date"
+            >
+
+            <!-- DATETIME -->
+            <label for="arrival">
+                Requested shelter arrival date and time:
+            </label>
+
+            <input
+                type="datetime-local"
+                id="arrival"
+                name="arrival_datetime"
+            >
+        </fieldset>
+
+
+        <fieldset>
+            <legend>6. Evidence</legend>
+
+            <!-- FILE UPLOAD -->
+            <label for="dragonPhoto">
+                Upload photographic evidence of the dragon:
+            </label>
+
+            <input
+                type="file"
+                id="dragonPhoto"
+                name="dragon_photo"
+                accept="image/*"
+            >
+
+            <p>
+                Accepted evidence includes photographs.
+                Drawings labelled "trust me, it looked like this"
+                may receive additional investigation.
+            </p>
+        </fieldset>
+
+
+        <div class="warning">
+            ⚠️ By submitting this application, you confirm that
+            the creature is actually a dragon and not an unusually
+            angry goose.
+        </div>
+
+
+        <div class="buttons">
+
+            <!--
+                Uses the form's default method="get"
+            -->
+            <button
+                type="submit"
+                class="get-button"
+                name="submission_method"
+                value="get"
+            >
+                📜 Submit using GET
+            </button>
+
+
+            <!--
+                Overrides GET and sends using POST.
+                multipart/form-data is appropriate for the uploaded file.
+            -->
+            <button
+                type="submit"
+                class="post-button"
+                name="submission_method"
+                value="post"
+                formmethod="post"
+                formenctype="multipart/form-data"
+            >
+                🔐 Submit using POST
+            </button>
+
+
+            <!--
+                Creative formaction:
+                this sends the same form to a completely different endpoint.
+            -->
+            <button
+                type="submit"
+                class="emergency-button"
+                name="submission_method"
+                value="emergency"
+                formmethod="post"
+                formaction="/royal_dragon_emergency_council.php"
+                formenctype="multipart/form-data"
+                formtarget="_blank"
+            >
+                🚨 Send to Royal Dragon Emergency Council
+            </button>
+
+        </div>
+
+    </form>
+</div>
+
+
+</body>
+</html>
